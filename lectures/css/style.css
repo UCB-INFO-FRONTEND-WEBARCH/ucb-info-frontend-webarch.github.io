@@ -1,0 +1,13 @@
+.two-column-left {
+	float:left;
+	width:48%;
+}
+
+.two-column-right {
+	float:right;
+	width:48%;
+}
+
+.text-highlight {
+	color: red;
+}

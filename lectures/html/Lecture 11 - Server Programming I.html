@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Server Programming I</title>
+
+		<link rel="stylesheet" href="../css/reveal.css" />
+		<link rel="stylesheet" href="../css/theme/black.css" id="theme" />
+		<link rel="stylesheet" href="../css/style.css" />
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Server Programming I</h1>
+					<p>
+						Info 253: Web Architecture<br />
+						Kay Ashaolu
+					</p>
+				</section>
+
+				<section>
+					<h1>What is a server?</h1>
+
+					<ul>
+						<li>A <strong>computer program</strong> or a device that provides functionality for other programs or devices, called "clients"</li>
+						<li>Servers can provide various functionalities, often called "services", such as sharing data or resources among multiple clients, or performing computation for a client</li>
+						<li>A single server can serve multiple clients, and a single client can use multiple servers
+						</li>
+					</ul>
+					<p><a href="https://en.wikipedia.org/wiki/Server_(computing)" target="_blank">- Wikipedia</a></p>
+				</section>
+
+				<section>
+					<h1>Server = "computer program"</h1>
+					<ul>
+						<li>A server is technically <em>not</em> the computer that runs this computer program.</li>
+						<li>A server is a program that is <strong>hosted</strong> by a computer (called a host)
+						<li>We will learn how to write and run these programs to service "clients"</li>
+						<li>Example of clients include desktop browsers, mobile browsers, curl (via the terminal)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>The Request-Response model</h1>
+					<ul>
+						<li>Client sends a request to the Server, Server responds back with data and typically an acknowledgement of receipt</li>
+						<li>The Server has declared specific paths (called routes) that when accessed would execute specific functions</li>
+						<li>Functions would return a response, which is sent to the Client</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Review</h1>
+					<img src="../assets/lecture-11/overview.png"  height="500px" />
+				</section>
+
+				<section>
+					<h1>Let's build our own server</h1>
+					<ul>
+						<li>We will be using <a href="http://flask.pocoo.org" target="_blank">Flask,</a> a Python microframework that makes buliding web servers and API's easier</li>
+						<li>This will mean that you may have to learn yet another programming language</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>One step back: What's Python?</h1>
+					<ul>
+						<li>Python is a high-level programming language that focuses on readability</li>
+						<li>Python syntax is easier to understand (than even JavaScript)</li>
+						<li>Python is a general programming language that can be used for a host of applications from webservers to back end applications</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<pre>
+function helloWorld(first_name, last_name) {
+  var message = "Hello World " + first_name + " " + last_name;
+  return message;
+}
+					</pre>
+					<pre>
+def hello_world(first_name, last_name):
+  message = "Hello World " + first_name + " " + last_name
+  return message
+					</pre>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<pre>
+function countToX(x) {
+  var message = "";
+  for(var i = 0; i <= x; i = i+1) {
+    message = message + i + " ";
+  }
+  return message;
+}
+					</pre>
+					<pre>
+def count_to_x(x):
+  message = ""
+  for i in range(x):
+    message = message + str(i) + " "
+  return message
+					</pre>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<p>JavaScript</p>
+					<pre>
+var student = {};
+student.name = prompt("Enter your name");
+student.attempts = [];
+
+answer = false
+while(answer != true) {
+	value = prompt("What is 8+8?");
+	student.attempts.push(value);
+
+	if(value == "16") {
+		answer = true;
+	}
+	else {
+		answer = false;
+	}
+}
+
+alert(student.name + " answers: " + student.attempts);
+					</pre>
+				</section>
+
+				<section>
+					<h1>Learn Python through JavaScript</h1>
+					<p>Python</p>
+					<pre>
+student = {}
+
+student["name"] = input("Enter your name ")
+student["attempts"] = []
+
+answer = False
+while answer != True:
+  value = input("What is 8+8? ")
+  student["attempts"].append(value)
+
+  if value == "16":
+    answer = True
+  else:
+    answer = False
+
+print(student["name"] + " answers: " + str(student["attempts"]))
+					</pre>
+
+
+				</section>
+
+				<section>
+					<h1>Back to Flask: an application like everything else</h1>
+					<ul>
+						<li>Need to install it as a module of your Python installation</li>
+						<li>Once installed, you can use it in your Python program</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's get started</h1>
+					<a href="https://github.com/kayashaolu/webarch-assign-2" target="_blank">Assignment 2 instructions: install Python 3 and forward ports from your vagrant box</a>
+				</section>
+
+				<section>
+					<h1>Quick note on pip</h1>
+					<ul>
+						<li>Pip is a Python package manager manager that makes it easy to install new python modules</li>
+						<li>There is a list of packages to install in the requirements.txt file of the assignment 2 repo</li>
+						<li>We use pip to install Flask and Requests</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Let's install the Python packages we need</h1>
+					<ul>
+						<li><pre>pip install flask</pre></li>
+						<li><pre>pip install requests</pre></li>
+					</ul>
+				</section>
+
+				<section>
+						<h1>Let's write our Python webserver application</h1>
+						<p>webserver.py</p>
+						<pre>
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+  return "&lt;h1&gt;Hello World!&lt;/h1&gt;"
+						</pre>
+				</section>
+
+				<section>
+					<h1>Let's create our first server</h1>
+					<ul>
+						<li>Open a terminal and navigate to a blank folder</li>
+						<li><pre>export FLASK_APP=webserver.py</pre></li>
+						<li><pre>flask run --host=0.0.0.0</pre></li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What did that do?</h1>
+					<ul>
+						<li>You just created your own web server!</li>
+						<li>Go to localhost:5000 on your browser to see it work</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What's going on?</h1>
+					<ul>
+						<li>We first imported the Flask class from the flask module that we just installed</li>
+						<li>Next we created a variable that points to a new flask application</li>
+						<li>We then set up a route (the root "/" route)</li>
+						<li>We defined a function that if someone goes to the root of our webserver, then the server should send the string "Hello World"</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Note about routes</h1>
+					<pre>
+@app.route('/')
+def hello_world():
+  return "&lt;h1&gt;Hello World!&lt;/h1&gt;"
+					</pre>
+					<ul>
+						<li>Routes associate a path to a function that sends a response back to the client</li>
+						<li>So if a client asks for the root path: http://localhost:5000/, it will run the above function</li>
+						<li>The response body will be &quot;&lt;h1&gt;Hello World&lt;/h1&gt;&quot;</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../js/reveal.js"></script>
+
+		<script>
+
+			Reveal.initialize();
+
+		</script>
+	</body>
+</html>
