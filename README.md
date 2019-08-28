@@ -1,5 +1,3 @@
-# INFO 253 - Front End Web Architecture
-
 ## Description:
 This course is a survey of technologies that power the user interfaces of web applications on a variety of devices today, including desktop, mobile, and tablet devices. This course will delve into some of the core Front-End languages and frameworks  (HTML/CSS/JS/React/Redux), as well as the underlying technologies enable web applications (HTTP, URI, JSON). The goal of this course is to provide an overview of the technical issues surrounding user interfaces powered by the web today, and to provide a solid and comprehensive perspective of the Web's constantly evolving landscape.
 
