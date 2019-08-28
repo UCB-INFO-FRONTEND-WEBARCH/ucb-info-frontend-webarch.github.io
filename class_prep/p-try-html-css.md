@@ -1,7 +1,7 @@
 # Class Prep: Try HTML and CSS
 
 ## Read about HTML and CSS History
- - [The history of HTML and CSS](http://amyhissom.com/HTML5-CSS3/history.html)
+ - [The History of HTML and CSS](http://amyhissom.com/HTML5-CSS3/history.html)
 
 
 ## Try HTML out
