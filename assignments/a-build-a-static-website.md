@@ -15,7 +15,7 @@ You will need to do the following:
  
 **Create five blog posts with the content in the raw_content folder**
  - Mark up the content using **semantic** HTML tags (h1, p, section, etc...)
- - These files are written in markdown format. If you go to your repository on github and click on the file, you will see these files formatted. Be sure to emulate exactly what you see on your website, for example, ordered lists should use the ul and li tags.
+ - These files are written in markdown format. We went over markdown briefly, but here's a [quick reference](https://www.makeuseof.com/tag/printable-markdown-cheat-sheet/). The goal is to use the correct HTML tag for what the markdown markup specified.
 
 **Create an About Us page**
  - You can write whatever content you would like in this page about your self
