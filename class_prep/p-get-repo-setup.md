@@ -14,5 +14,5 @@ To make any changes and save it to your repo and push it remotely:
 2. git commit -m "your message"
 3. git push
 
-**Note** Please be sure to create an "assignment1" folder for all files relating to assignment1 inside of your git repo
+**Note** Please be sure to create an "assignment1" folder for all files relating to assignment1 inside of your git repo<br />
 **Note** Please be sure that YOUR NEW CHANGES ARE ON GITHUB!!!
