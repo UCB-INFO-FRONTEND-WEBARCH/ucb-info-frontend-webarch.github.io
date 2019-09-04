@@ -36,3 +36,6 @@ You will need to do the following:
 
 **Extra Credit**
  - Use native CSS Grid capabilities or another CSS framework to style the website 
+
+**Note** Please be sure to create an "assignment1" folder for all files relating to assignment1 inside of your git repo
+**Note** Please be sure that YOUR NEW CHANGES ARE ON GITHUB!!!
