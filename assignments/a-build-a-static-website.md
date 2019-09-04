@@ -3,7 +3,9 @@
 
 Our assignments are going to be built around building a blog from the ground up and eventually hosting your blog in the cloud. For this first assignment, you are going to take the content that is in the raw_content folder and build a blog out of it.
 
-You will use HTML and CSS  to build a static web page using the content that is in the raw_content folder. The content contains five blog articles that will be separate pages on your website.
+You will use HTML and CSS  to build a static web page using the content that is provided in the link below. The content contains five blog articles that will be separate pages on your website.
+
+[Download content for website here](https://ucb-info-frontend-webarch.github.io/assignments/a-build-a-static-website-resources.zip)
 
 You will need to do the following:
 
