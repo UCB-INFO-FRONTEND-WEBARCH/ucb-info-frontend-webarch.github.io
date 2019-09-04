@@ -7,6 +7,8 @@ You will use HTML and CSS  to build a static web page using the content that is 
 
 [Download content for website here](https://ucb-info-frontend-webarch.github.io/assignments/a-build-a-static-website-resources.zip)
 
+**Note: PLEASE CREATE A FOLDER CALLED "assignment1" in your assignment repo that you created and put all artifacts (your html and css files) in that folder. ALSO BE SURE THAT YOU PUSHED YOUR REPO TO GITHUB**
+
 You will need to do the following:
 
 **Create a homepage**
