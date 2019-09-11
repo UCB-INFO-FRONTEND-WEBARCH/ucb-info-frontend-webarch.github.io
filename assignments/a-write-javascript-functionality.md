@@ -17,9 +17,18 @@ You will need to do the following:
 
  Example
 ```javascript
- let submission = getSubmission("kay@kay.com", "mary@mary.com", "Welcome to INFO 253!", "Introductory message for those in INFO 253");
+ let submission = getSubmission("kay@kay.com", 
+    "mary@mary.com", 
+    "Welcome to INFO 253!", 
+    "Introductory message for those in INFO 253");
 
- // submission = { to: "kay@kay.com", from: "mary@mary.com", subject: "Welcome to INFO 253!", message: "Introductory message for those in INFO 253"}
+ /* 
+    submission = { 
+    to: "kay@kay.com", 
+    from: "mary@mary.com", 
+    subject: "Welcome to INFO 253!", 
+    message: "Introductory message for those in INFO 253"}
+*/
 ```
  
  **Create a class with the following characteristics:**
@@ -41,6 +50,6 @@ You will need to do the following:
  **Create another function with the following characteristics:**
  - Name of Function: addComment
  - Parameters: list_of_comments, comment 
- - list_of_comments is an array of values with type Commewnt, comment is a parameter of type Comment
+ - list_of_comments is an array of values with type Comment, comment is a parameter of type Comment
  - Returns: list_of_comments
  - AddComment should add comment to list_of_comments. It should add the new comment to the end of the list_of_comments
