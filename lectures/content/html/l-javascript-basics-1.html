@@ -100,17 +100,15 @@
 				</section>
 
 				<section>
-					<h1>What are variables? Data types?</h1>
+					<h1>Variables? Data types?</h1>
 					<ul>
 						<li>A variable is an empty space holder for a future value</li>
 						<li>There are a few types of values that JavaScript uses
 							<ul>
-								<li>Numbers</li>
+								<li>Numbers and Booleans (true or false)</li>
 								<li>Strings or a sequence of characters</li>
-								<li>Booleans (true or false)</li>
-								<li>Functions (yes variables can be functions in JavaScript)</li>
-								<li>Arrays (lists of variables)</li>
-								<li>Objects</li>
+								<li>Functions</li>
+								<li>Arrays (lists of variables) and Objects</li>
 							</ul>
 						</li>
 					</ul>
@@ -120,29 +118,29 @@
 				<section>
 					<h1>Variables</h1>
 					<ul>
-						<li>Declare with var to scope correctly</li>
+						<li>Declare with let to scope correctly</li>
 						<li>Weak, dynamic typing</li>
 					</ul>
 					<pre>
-var a = 3;
-var b = 5;
-var c = a + b;
+let a = 3;
+let b = 5;
+let c = a + b;
 					</pre>
 				</section>
 
 				<section>
 					<h1>Strings</h1>
 					<pre>
-var a = "hello";
-var b = "world!";
-var c = a + b;
+let a = "hello";
+let b = "world!";
+let c = a + b;
 					</pre>
 				</section>
 
 				<section>
 					<h1>Arrays (Lists)</h1>
 					<pre>
-var list = [2,3, "KAY"];
+let list = [2,3, "KAY"];
 alert(list[2]);
 					</pre>
 				</section>
@@ -152,7 +150,7 @@ alert(list[2]);
 
 					<div class="two-column-left">
 					<pre>
-var titles = {
+let titles = {
     info253: 'Web Arch',
     info256: 'Applied NLP’
 };
@@ -162,7 +160,7 @@ alert(titles.info253);
 
 					<div class="two-column-right">
 					<pre>
-var schools = {
+let schools = {
     berkeley: {info253: 'Web Arch'},
     stanford: {cs101: 'Intro CS’}
 };
@@ -201,13 +199,13 @@ alert(schools.stanford.cs101);
 				<section>
 					<h1>Function Syntax</h1>
 					<pre>
-var add = function(a, b) {return a + b;}
-var c = add(2, 7)
+let add = function(a, b) {return a + b;}
+let c = add(2, 7)
 /* c is now 9 */
 
-var arithmetic = {add: add, subtract: function(a, b) {return a - b;}};
-var d = arithmetic.subtract(11, 4);
-var e = arithmetic.add(0, 3);
+let arithmetic = {add: add, subtract: function(a, b) {return a - b;}};
+let d = arithmetic.subtract(11, 4);
+let e = arithmetic.add(0, 3);
 /* d is now 7; e is now 3; */
 
 					</pre>
@@ -220,13 +218,13 @@ var e = arithmetic.add(0, 3);
 
 					<pre>
 function helloWorld(first_name, last_name) {
-	var message = "Hello World " + first_name + " " + last_name;
+	let message = "Hello World " + first_name + " " + last_name;
 	return message;
 }
 
-var first = prompt("Enter your first name");
-var last = prompt("Enter your last name");
-var output = helloWorld(first, last);
+let first = prompt("Enter your first name");
+let last = prompt("Enter your last name");
+let output = helloWorld(first, last);
 alert(output);
 					</pre>
 					<p>What does this function do?</p>

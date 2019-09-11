@@ -49,7 +49,7 @@
 					<pre>
 function getGenerationalCohort(yearBorn) {
 
-	var generationalCohort = ""
+	let generationalCohort = ""
 
 	if (yearBorn > 1900 &amp;&amp; yearBorn <= 1926) {
 		generationCohort = "GI Generation";
@@ -81,8 +81,8 @@ function getGenerationalCohort(yearBorn) {
 	return generationalCohort;
 }
 
-var year = parseInt(prompt("Enter your year of birth"));
-var cohort = getGenerationalCohort(year);
+let year = parseInt(prompt("Enter your year of birth"));
+let cohort = getGenerationalCohort(year);
 alert("The generational cohort of someone born in " +
 	year + " is: " + cohort + ".");
 					</pre>
@@ -123,16 +123,16 @@ alert("The generational cohort of someone born in " +
 					<pre>
 function countToX(x) {
 
-	var message = "";
-	for(var i = 0; i <= x; i = i+1) {
+	let message = "";
+	for(let i = 0; i <= x; i = i+1) {
 		message = message + i + " ";
 	}
 
 	return message;
 }
 
-var limit = parseInt(prompt("Enter a number"));
-var output = countToX(limit);
+let limit = parseInt(prompt("Enter a number"));
+let output = countToX(limit);
 alert(output);
 
 					</pre>
@@ -198,8 +198,8 @@ alert(output);
 				<section>
 					<h1>Let's use a while loop!</h1>
 					<pre>
-var answerQuestion = function() {
-	var answer = prompt("What is 4 + 4");
+let answerQuestion = function() {
+	let answer = prompt("What is 4 + 4");
 
 	if (answer == "8") {
 		return true;
@@ -245,7 +245,7 @@ alert("Correct Answer!");
 				<section>
 					<h1>Let's start with a compound example</h1>
 					<pre>
-var student = {
+let student = {
 	name: "Kay Ashaolu",
 	id: 232324,
 	lab_grades: [1, 1, 1],
@@ -274,7 +274,7 @@ alert(student.assignment_grades[2]);
 				<section>
 					<h1>One more example</h1>
 					<pre>
-var student = {};
+let student = {};
 
 student.name = prompt("Enter your name");
 student.attempts = [];
