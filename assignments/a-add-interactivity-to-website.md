@@ -12,7 +12,7 @@ You will need to do the following:
 
 **Create a Contact Us page**
 
-***The page and form ***
+***The page and form***
  - Create a page that contains a form where people can contact you
  - Need to have the following fields: From, Subject, Message
   - From is an email address (should have name="from")
