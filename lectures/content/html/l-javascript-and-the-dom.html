@@ -391,11 +391,14 @@ titleNode.addEventListener(&quot;click&quot;, function(event) {
 				<p>js/script.js (1/1)</p>
 				<pre><code data-trim data-noescape>
 /* Populate with current location */
-let locationDiv = document.getElementById(&quot;#locationList&quot;);
-locationDiv.innerHTML = localStorage.curLocation;
+let locationDiv = document.getElementById(&quot;locationList&quot;);
+
+if (localStorage.curLocation != null) {
+	locationDiv.innerHTML = localStorage.curLocation;
+}
 
 /* Run code on submit button push */
-let locationForm = document.getElementById(&quot;#locationForm&quot;);
+let locationForm = document.getElementById(&quot;locationForm&quot;);
 locationForm.addEventListener(&quot;submit&quot;, function(event) {
 	let name = locationForm.elements.namedItem(&quot;name&quot;).value;
 	let state = locationForm.elements.namedItem(&quot;state&quot;).value;
