@@ -33,14 +33,11 @@ You will need to do the following:
 
  For example
  ```
-let object1 = { "key1": "value1",
-				    "key2": "value2"}
+let object1 = { "key1": "value1", "key2": "value2"}
 
-let object2 = { "key1": "value3",
-				    "key2": "value4"}
+let object2 = { "key1": "value3", "key2": "value4"}
 
-let object3 = { "key1": "value5",
-				    "key2": "value6"}
+let object3 = { "key1": "value5", "key2": "value6"}
 
 let objectArray = [object1, object2, object3]
 localStorage.savedObjects = JSON.stringify(objectArray) //serialization
