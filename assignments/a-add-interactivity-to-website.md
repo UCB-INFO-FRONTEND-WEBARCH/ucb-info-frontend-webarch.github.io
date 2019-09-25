@@ -60,4 +60,4 @@ console.log(`${retrievedObjects[0].key1} ${retrievedObjects[1].key1} ${retrieved
 **Comments display**
  - On page load, must display all comments from localStorage to the end of the page
  - On page submit, new comments must be added to the bottom of displayed comments
- - **Note** The array within localStorage must contain instances of type Comment
+ - **NOTE** Remember to serialize your comments before saving to localStorage
