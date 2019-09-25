@@ -1,7 +1,7 @@
 # Class Prep: Intro to React
 
 ## Installation
-[Install NodeJS](Install NodeJS: https://nodejs.org/en/download/)
+[Install NodeJS](https://nodejs.org/en/download/)
 [Setup React Toolchain](https://reactjs.org/docs/create-a-new-react-app.html) - Create React App
 
 # React Primer 1
