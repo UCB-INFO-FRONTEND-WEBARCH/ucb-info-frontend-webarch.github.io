@@ -16,7 +16,7 @@ Your task is to take the website you have been building into React
 	2. Blog posts
 	3. Other content pages (e.g. About Us)
 	4. Links that open blog posts
-3. There should be components created for each "section" of the site, and each page should execute it's own React application containing the appropriate components for each page.
+3. There should be components created for each "section" of the site
     1. For example, reusable components would include:
         1. Header
         2. Footer
@@ -25,17 +25,101 @@ Your task is to take the website you have been building into React
         5. ContactUs
         6. AboutUs
         7. And so on
-    2. In each individual html file, there should be a script to replace the root div with the appropriate component, like the below
+    2. This should all be rendered in your single index.js file. You will need to swap out the component that displays the content of a specific page (e.g. BlogPost1, ContactUs) based on the given state of your React Application
         
-```
-// Render the BlogPost1Page component, which contains instances of your Header, Footer, and BlogPost1 components
-ReactDOM.render(
-  <BlogPost1Page />,
-  document.getElementById('root'));
-```
 
 ## Things to consider
 1. Think about the different React Components that will  be a part of your app. For example, a header and a footer would make great React Components.
 2. Think about how you are going to display a new page/blog post via a link. You will need to capture a click event for a link and use that to modify the state of the component you have that contains your content.
-3. Think about how to design the component that will contain all of the contact us form submissions. This component will have state that is being added to every time someone successfully submits a contact us form. Also consider the contact us form as it’s own react component.
-4. Think about where you are going to contain the data from the blog posts and the rest of the pages. For this assignment containing each blog post in its own component and then creating a component that switches between those components would be great. Check the starter code for some ideas with this.
+
+## Note! ##
+
+This assignment will require that you need figure out how to route url paths (e.g. localhost:3000/aboutus) to render specific react components. There are several ways to do this, many beyond what we have covered at this point. However, here's a simple way of achieving this goal using the elements of React that we covered and doing some search within JavaScript:
+
+```
+import React from 'react';
+import './App.css';
+
+// Defining a quick Header component. Note that it has two links: / for the home page and /page2 for another page
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Header</h1>
+        <a href="/">Homepage</a><br />
+        <a href="/page2">Page2</a>
+      </div>
+    )
+  }
+}
+
+// Defining a home page component. This component will contain content specific to the home page
+class HomePage extends React.Component {
+  render() {
+    return (
+      <h1>HomePage</h1>
+    )
+  }
+}
+
+// Defining a Page2 Component. This component will contain content specific to whatever Page2 is
+class Page2 extends React.Component {
+  render() {
+    return (
+      <h1>Page2</h1>
+    )
+  }
+}
+
+// Quick Footer component
+class Footer extends React.Component {
+  render() {
+    return (
+      <h1>Footer</h1>
+    )
+  }
+}
+
+// This is the main Component that index.js is going to render. This is responsible for rendering the correct components for each given
+// Page
+class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+    // here's the special sauce: window.location.pathname gives you the path of the current url outside of the domain.
+    // For example, if your current url is "localhost:3000/page2", window.location.pathname will equal "/page2"
+    this.state = {'currentPage':  window.location.pathname }
+  }
+
+  // This render function now looks at the current state (set by window.location.pathname), and renders the correct components
+  render() { 
+
+    // If there's no path, render the home page (i.e. http://localhost:3000/)
+    if (this.state.currentPage === "/") {
+      return (
+        <div>
+          <Header />
+          <HomePage />
+          <Footer /> 
+        </div>
+      )
+    }
+
+    // If the path is /page2 (i.e. http://localhost:3000/page2, then render the page with Page2 content)
+    else if (this.state.currentPage === "/page2") {
+      return (
+        <div>
+          <Header />
+          <Page2 />
+          <Footer /> 
+        </div>
+      )
+    }
+      
+  }
+}
+```
+
+Please note that this is not the most efficient routing method since we are reloading the page on every click and there are ways to prevent our need to do so. However this way uses what you learned so far.
+
+Also note: `window.location.pathname` is pure JavaScript, not React. Actually the entire "window" object is pure JavaScript and is available within any browser.
