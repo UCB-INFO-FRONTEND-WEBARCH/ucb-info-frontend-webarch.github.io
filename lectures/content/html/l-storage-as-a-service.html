@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Storage Systems I</title>
+
+    <link rel="stylesheet" href="../../reveal/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal/css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="../../reveal/lib/css/monokai.css">
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <div class="slides">
+        <section>
+            <h1>Storage Systems as a Service</h1>
+            <p>
+                Kay Ashaolu
+            </p>
+        </section>
+
+        <section>
+            <h1>Why data storage?</h1>
+            <ul>
+                <li>When we make a web request, where do we get the data from?</li>
+                <li>When we create data, where do we put it?</li>
+                <li>Where do "resources" live?</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Example: bit.ly</h1>
+            <ul>
+                <li>Lots of data to store
+                    <ul>
+                        <li>Shortcut to url mapping</li>
+                        <li>Statistics about links</li>
+                        <li>Information about users</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Example: bit.ly</h1>
+            <pre>
+long url http://news.google.com
+short url http://bit.ly/awekl
+hit count 482240
+
+long url http://facebook.com/user/profile
+short url http://bit.ly/czasw
+hit count 11023
+
+long url http://msnbc.com/news/article/
+short url http://bit.ly/olkjpl
+hit count 1232
+					</pre>
+        </section>
+
+        <section>
+            <h1>Data Storage Design</h1>
+            <ul>
+                <li>What is the storage format?</li>
+                <li>How do we lay out data?</li>
+                <li>How do we access data?</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Why use a file?</h1>
+            <ul>
+                <li>http://news.google.com, http://bit.ly/awekl, 482240</li>
+                <li>http://facebook.com/user/profile, http://bit.ly/czasw, 11023</li>
+                <li>http://msnbc.com/news/article, http://bit.ly/olkjpl, 1232</li>
+                <li>What are the pros and cons?</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Problems with Files</h1>
+            <ul>
+                <li>What if we want to add another field?</li>
+                <li>What if we want to query different parts of data? How efficient is this?</li>
+                <li>What if we have concurrent accesses?</li>
+                <li>What data structures should we use?</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Data Independence</h1>
+            <ul>
+                <li>Databases: apps shouldn’t have to worry about these problems!</li>
+                <li>Underlying storage format independent of application-level logic</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Relational Data Stores</h1>
+            <ul>
+                <li>RDBMS: Relational Database Management System</li>
+                <li>Invented in the 1970s</li>
+                <li>e.g., Oracle, MySQL, Postgres, IBM DB2, Microsoft SQL Server</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Relational Model</h1>
+            <ul>
+                <li>Reason about sets of facts, or "tables"</li>
+                <li>Each fact is a "row"</li>
+                <li>Attributes are "columns" of row</li>
+            </ul>
+        </section>
+
+        <Section>
+            <h1>NoSQL</h1>
+            <ul>
+                <li>Different approach to data storage</li>
+                <li>Simple but predictable data models</li>
+                <li>Often have to build own features</li>
+                <li>Designed for massive scale-out</li>
+            </ul>
+        </Section>
+
+        <section>
+            <h1>Key-Value Store</h1>
+            <pre>
+put(key, value) get(value)
+					</pre>
+            <div class="two-column-left">
+                <strong>Pros</strong>
+                <ul>
+                    <li>Simple API</li>
+                    <li>Easy to understand performance</li>
+                    <li>Easy to scale and use</li>
+                </ul>
+            </div>
+
+            <div class="two-column-right">
+                <strong>Cons</strong>
+                <ul>
+                    <li>Simple API</li>
+                    <li>Must handle own schema management</li>
+                    <li>May need to manually implement search features</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section>
+            <h1>Document Store</h1>
+            <pre>
+{
+	"long_url": "http://www.google.com",
+	"short_url": "qwelmw",
+	"hit_count": 2
+}
+					</pre>
+
+            <ul>
+                <li>No predefined schema</li>
+                <li>Store handles layout of arbitrary fields</li>
+                <li>Examples: MongoDB, CouchDB, Cassandra, Redis</li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Front End</h1>
+
+            <ul>
+                <li>Since we are on the front end, we don't normally deal with the database details</li>
+                <li>What we really need is the ability to reach out to a service that gives us the capabilities of using a database</li>
+                <li>Sounds like what we need is an API!</li>
+
+            </ul>
+        </section>
+
+        <section>
+            <h1>Google Firebase</h1>
+
+            <ul>
+                <li>A NoSQL Cloud database that we can directly use with our React Applications</li>
+                <li>Provides an API to save JSON data to the cloud</li>
+                <li>Gives us the ability to save, access, and search data outside of the confines of our application</li>
+                <li>We can write our front end code in React, and use API's to provide the functionality we need without a webserver</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h1>Questions</h1>
+        </section>
+    </div>
+
+</div>
+
+<script src="../../reveal/js/reveal.js"></script>
+
+<script src="../init.js"></script>
+
+<script>
+
+    Reveal.initialize();
+
+</script>
+
+</body>
+</html>
