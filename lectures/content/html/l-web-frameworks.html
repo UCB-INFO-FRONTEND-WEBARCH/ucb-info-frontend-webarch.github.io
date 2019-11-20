@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>REST</title>
+
+    <link rel="stylesheet" href="../../reveal/css/reveal.css">
+    <link rel="stylesheet" href="../../reveal/css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="../../reveal/lib/css/monokai.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <div class="slides">
+
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Web Frameworks
+
+                Kay Ashaolu
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # What is a Web Framework?
+
+                - A design pattern can describe how a website functions
+                - Includes how does data get stored and updated, and how pages are rendered
+                - Hopefully reduces complexity in the development and maintenance of websites
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Model View Controller (MVC)
+
+                - The one that started them all
+                - MVC was used heavily at the beginnings of the internet
+                - Key goal is to separate content from presentation
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Let's remember though - before
+
+                - On the web, when MVC was extremely popular websites were mostly server rendered
+                - This means for every request, the server was building the html and css for the site dynamically
+                - The model in MVC was typically connected to the database
+                - This is still used today:
+                [LAMP, MEAN, and Ruby on Rails](https://webinerds.com/6-web-development-stacks-try-2017/)
+                stacks are typically built using MVC
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Let's remember though - after
+
+                - Now we can create fully static sites (with React) without the need of a server
+                - And use JavaScript to call directly to APIs to provide the dynamic functionality that we need
+                - A lot of this is encouraged by the [JAM Stack](https://jamstack.org/)
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Model
+
+                - Contains the data of the application as well as the business logic
+                - Contains the state of the application
+                - Manages the data that drives the entire website
+                - Typically this data is backed/sourced from an external database
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # View
+
+                - Contains the user interface or presentation of the website
+                - Contains logic that builds the HTML/CSS that the user will see on the website
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Controller
+
+                - Handles the user request
+                - Facilitates building the view(s) based on the model(s) that is required for displaying a given page
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Pros of the MVC Pattern
+
+                - Consolidation of data into explicitly defined models
+                - Separation between content and presentation
+                - Can provide multiple views of the same data
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Cons of the MVC Pattern
+
+                - Model / Views can get complicated to manage and understand
+                - Coupling of business logic with data store increases complexity of the application
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Modern Web Frameworks
+
+                - As browsers and computers become more powerful, and we've discovered AJAX, now there is increased
+                state in the browser
+                - Now the model of an application can be found in the browser itself as well as the server rendering it
+                - Sometimes, the model on the server doesn't exist at all (in it's entirety)
+                - So there was move to incorporate varous forms of MVC to the browser itself
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # "Two way binding" frameworks
+
+                - Angular, Vue.js, Backbone.js are (in my opinion) MVVM frameworks
+                - Focus on the two way binding of state to modify the view, and the view to be able to modify the state
+            </script>
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Pros
+
+                - State of the application is stored on the frontend itself, and the UI is driven by that state
+                - UI can directly modify the state and update the backend
+                - Backend can directly modify the state and update the UI
+                - All without directly interfacing with each other
+            </script>
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Cons
+
+                - What happens if the UI and the backend updates the state stored on the frontend at the same time?
+                - What happens if a race condition occurs and our frontend state is in a bad state?
+                - Angular opted to rewrite their entire library because of the two issues to ensure that their
+                two way binding will not run into the above issues
+                - Angular allows developers to implement an API to wirte code on how to "two way bind" their modules
+                withs state
+            </script>
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # The move to Immutable state
+
+                - React used a different approach - state that can only be changed via calls to setState
+                - Components that render based on an updated snapshot of the state
+                - UI events must call setState in order to rerender a component
+                - All components can have such state
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # As applications get larger
+
+                - React recommends to pushing state to a parent component and having it pass down to the children
+                - This provides a "centralized data store" and makes it easier to communicate in between components
+                - Business/UI events are bubbled up to the parent component to change the state
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                ```javascript
+                /* Example of parent component state */
+                class LoginControl extends React.Component {
+                    constructor(props) {
+                        super(props);
+                        this.handleLoginClick = this.handleLoginClick.bind(this);
+                        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+                        this.state = {isLoggedIn: false};
+                     }
+
+                    handleLoginClick() {
+                        this.setState({isLoggedIn: true});
+                    }
+
+                    handleLogoutClick() {
+                        this.setState({isLoggedIn: false});
+                    }
+                ```
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                ```javascript
+                /* Example of parent component state */
+                render() {
+                    const isLoggedIn = this.state.isLoggedIn;
+                    let button;
+                    if (isLoggedIn) {
+                        button = <LogoutButton onClick={this.handleLogoutClick} />;
+                    } else {
+                        button = <LoginButton onClick={this.handleLoginClick} />
+                    }
+                    return (
+                        <div>
+                        <Greeting isLoggedIn={isLoggedIn} />
+                        {button}
+                        </div>;
+                    );
+                    }
+                }
+                ```
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                ```javascript
+                /* Example of parent component state */
+
+                ReactDOM.render(<LoginControl />,
+                document.getElementById(&apos;root&apos;)
+                );
+                ```
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Notice the state
+
+                - The state of the entire application is contained in LoginControl
+                - LogoutButton, LoginButton, and Greeting are driven completely by the state in LoginControl
+                - Interactions between the Buttons are bubbled up to the LoginControl via click handlers
+                - Click Handlers modify state
+                - Components handle the view of an immutable snapshot of the state
+
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Notice the state
+
+                - Imagine though if instead of four components you have 40 components
+                - Nested within each other
+                - Sprinkled throughout your application
+                - Bubbling up state to a parent component may start to get hard to do
+
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # Redux
+
+                - Redux is a Flux implementation that attempts to make managing state in user interfaces easier
+                - It does this by centralizing the state, and preventing any regular component from modifying the state
+                - Even with setState
+                - Components can send actions in response to events, and reducers are written to take in actions and
+                define independently what the new state would be in response to those actions
+                - Components are wired to use this centralized store
+
+            </script>
+
+        </section>
+
+        <section data-markdown>
+
+            <script type="text/template">
+                # React-Redux
+
+                - React-Redux is a library that implements Redux principles in React
+                - Provides components and tooling for the centralized store and sending actions
+                - [Lets check out this coding sample](https://codesandbox.io/s/9on71rvnyo)
+            </script>
+
+        </section>
+
+        <section>
+            <h1>Questions?</h1>
+        </section>
+
+    </div>
+</div>
+
+<script src="../../reveal/js/reveal.js"></script>
+<script src="../../reveal/plugin/markdown/marked.js"></script>
+<script src="../../reveal/plugin/markdown/markdown.js"></script>
+
+<script src="../init.js"></script>
+
+<script>
+    Reveal.configure({ markdown: {
+            smartypants: true,
+        }});
+
+</script>
+</body>
+</html>
